@@ -10,7 +10,7 @@ async function getData() {
 export default async function page() {
     const datas = await getData();
     return (
-        <div>
+        <div className="">
             <Popular datas={datas['data']} />
         </div>
     )

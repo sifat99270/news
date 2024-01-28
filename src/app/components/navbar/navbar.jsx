@@ -3,12 +3,22 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState, useRef } from "react";
 import Search from "../news/search";
+import Profile from "../auth/profile";
+import Cookies from "js-cookie";
 
 function Navbar({ cat }) {
     const [data, setData] = useState([]);
     const [input, setInput] = useState("");
     const [search, setSearch] = useState(false);
+    const [auth, setAuth] = useState(false);
     const slideRef = useRef();
+    useEffect(() => {
+        if (Cookies.get('token')) {
+            setAuth(true)
+        } else {
+            setAuth(false)
+        }
+    }, [])
     function onchange(value) {
         setInput(value);
     }
@@ -106,12 +116,12 @@ function Navbar({ cat }) {
                                     </button>
                                 </Link>
                             </div>
-                            <Link
+                            {auth ? <Profile /> : <Link
                                 href="/login"
                                 className=" border text-pink-500 hover:text-white hover:bg-pink-500 border-pink-500 p-1 h-10  leading-8 rounded-md mr-6"
                             >
                                 LOGIN
-                            </Link>
+                            </Link>}
                         </div>
                     </>
                 )}

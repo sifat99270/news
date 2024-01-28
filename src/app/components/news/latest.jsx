@@ -5,7 +5,7 @@ import Link from 'next/link';
 async function Latest({ name, data }) {
 
     return (
-        <div className=' w-full h-screen overflow-scroll'>
+        <div className=' w-full h-screen '>
             <div className=' w-full font-extrabold text-emerald-500 p-4 text-lg text-center  mb-3 rounded-md shadow-md'>{name}</div>
             <div className='flex w-full justify-center items-center flex-wrap gap-5 '>
                 {!data || !data.length ? <p className=' font-extrabold text-rose-950'>no data here</p> :

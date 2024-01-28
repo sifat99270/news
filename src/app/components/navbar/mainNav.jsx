@@ -1,4 +1,7 @@
+
+import { cookies } from "next/headers";
 import Navbar from "./navbar";
+
 
 async function getData() {
     const res = await fetch(`${process.env.HOST}/api/categories/get`)
@@ -7,9 +10,10 @@ async function getData() {
 }
 export default async function MainNav() {
     const data = await getData()
+    const token = cookies().get('token')
     return (
         <div>
-            <Navbar cat={data['data']} />
+            <Navbar cat={data['data']} login={token} />
         </div>
     )
 }
